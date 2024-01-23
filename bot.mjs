@@ -9,7 +9,7 @@ dotenv.config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.start((ctx) => ctx.reply(`${ctx.message.from.first_name ? ctx.message.from.first_name : 'Користувач'}, ласкаво просимо до боту з прогнозу погоди. Для старту роботи напишіть місто, яке вас цікавить чи напишіть "Меню", щоб дізнатися погоду по вашій геолокації.`));
-
+bot.help((ctx) => ctx.reply(commands));
 bot.on('message', async (ctx) => {
     try {
         const chatId = ctx.chat.id;
@@ -43,9 +43,7 @@ bot.on('message', async (ctx) => {
     } catch (error) {
         console.error(error);
     }
-    
-    
-    });
+});
 
 bot.launch();
 
